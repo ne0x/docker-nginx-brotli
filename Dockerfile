@@ -1,9 +1,9 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
-ENV NGINX_VERSION 1.16.0
-ENV NGX_BROTLI_COMMIT 8104036af9cff4b1d34f22d00ba857e2a93a243c 
+ENV NGINX_VERSION 1.17.1
+ENV NGX_BROTLI_COMMIT dc37f658ccb5a51d090dc09d1a2aca2f24309869 
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
@@ -147,6 +147,11 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+
+RUN apk add --no-cache nodejs=10.16.0-r0
+RUN apk add --no-cache npm=10.16.0-r0
+
+RUN npm install npm@6.10.1 -g
 
 EXPOSE 80 443
 
