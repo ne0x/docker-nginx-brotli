@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
@@ -148,10 +148,10 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
-RUN apk add --no-cache nodejs=10.16.0-r0
-RUN apk add --no-cache npm=10.16.0-r0
+RUN apk add --no-cache nodejs=12.15.0-r1
+RUN apk add --no-cache npm=12.15.0-r1
 
-RUN npm install npm@6.10.1 -g
+RUN npm install npm@6.13.7 -g
 
 EXPOSE 80 443
 
